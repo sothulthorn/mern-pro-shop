@@ -1,0 +1,16 @@
+{
+  "name": "mern-proshop",
+  "version": "1.0.0",
+  "description": "e-commerce application built with MERN stack",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "keywords": [],
+  "author": "sothulthorn",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

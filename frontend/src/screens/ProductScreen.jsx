@@ -9,7 +9,6 @@ import {
   Button,
   ListGroupItem,
 } from 'react-bootstrap';
-import Product from '../components/Product';
 import Rating from '../components/Rating';
 import products from '../products';
 
