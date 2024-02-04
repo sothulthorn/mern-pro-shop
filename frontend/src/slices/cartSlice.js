@@ -23,23 +23,23 @@ const cartSlice = createSlice({
         state.cartItems = [...state.cartItems, item];
       }
 
-      // Calculate Items Price
-      state.itemsPrice = addDecimals(
-        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+      const itemsPrice = state.cartItems.reduce(
+        (acc, item) => acc + (item.price * 100 * item.quantity) / 100,
+        0
       );
+      state.itemsPrice = addDecimals(itemsPrice);
 
-      // Calculate Shipping Price (If order is over $100 then free, else $10 shippping)
-      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
+      // Calculate the shipping price
+      const shippingPrice = itemsPrice > 100 ? 0 : 10;
+      state.shippingPrice = addDecimals(shippingPrice);
 
-      // Calculate Tax Price (15% Tax)
-      state.taxPrice = addDecimals(Number(state.itemsPrice * 0.15).toFixed(2));
+      // Calculate the tax price
+      const taxPrice = 0.15 * itemsPrice;
+      state.taxPrice = addDecimals(taxPrice);
 
-      // Calculate Total Price
-      state.totalPrice = addDecimals(
-        Number(state.itemsPrice) +
-          Number(state.shippingPrice) +
-          Number(state.taxPrice)
-      ).toFixed(2);
+      const totalPrice = itemsPrice + shippingPrice + taxPrice;
+      // Calculate the total price
+      state.totalPrice = addDecimals(totalPrice);
 
       // Save to local storage
       localStorage.setItem('cart', JSON.stringify(state));
