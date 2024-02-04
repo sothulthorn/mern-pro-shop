@@ -11,7 +11,7 @@ import {
   ListGroupItem,
   Form,
 } from 'react-bootstrap';
-import { UseDispatch, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
