@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateCart } from '../utils/cartUtils';
 
 const initialState = localStorage.getItem('cart')
   ? JSON.parse(localStorage.getItem('cart'))
   : { cartItems: [] };
-
-const addDecimals = (num) => {
-  return (Math.round(num * 100) / 100).toFixed(2);
-};
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -23,26 +20,7 @@ const cartSlice = createSlice({
         state.cartItems = [...state.cartItems, item];
       }
 
-      const itemsPrice = state.cartItems.reduce(
-        (acc, item) => acc + (item.price * 100 * item.quantity) / 100,
-        0
-      );
-      state.itemsPrice = addDecimals(itemsPrice);
-
-      // Calculate the shipping price
-      const shippingPrice = itemsPrice > 100 ? 0 : 10;
-      state.shippingPrice = addDecimals(shippingPrice);
-
-      // Calculate the tax price
-      const taxPrice = 0.15 * itemsPrice;
-      state.taxPrice = addDecimals(taxPrice);
-
-      const totalPrice = itemsPrice + shippingPrice + taxPrice;
-      // Calculate the total price
-      state.totalPrice = addDecimals(totalPrice);
-
-      // Save to local storage
-      localStorage.setItem('cart', JSON.stringify(state));
+      return updateCart(state);
     },
   },
 });
