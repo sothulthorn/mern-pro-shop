@@ -10,10 +10,11 @@
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "data:import": "node backend/seeder.js",
-    "data:destroy": "node backend/seeder.js -d"
+    "data:destroy": "node backend/seeder.js -d",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
-  "author": "sothulthorn",
+  "author": "SOTHUL THORN",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
