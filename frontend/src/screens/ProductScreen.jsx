@@ -21,6 +21,7 @@ import {
   useCreateReviewMutation,
 } from '../slices/productsApiSlice';
 import { addToCart } from '../slices/cartSlice';
+import Meta from '../components/Meta';
 
 const ProductScreen = () => {
   const [quantity, setQuantity] = useState(1);
@@ -80,6 +81,7 @@ const ProductScreen = () => {
       ) : (
         <>
           <Row>
+            <Meta title={product.name} />
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
